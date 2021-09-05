@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
+    <title>Document</title>
+</head>
+<script>
+    let _ = Rx;
+    const obj1 = {
+        a:1 ,
+        b:2,
+        c:3,
+        d:4
+    }
+</script>
+
+1. values
+<script>
+    console.log(Object.values(obj1));
+
+_.go(
+    obj1,
+    Object.values,
+    _.map(a => a + 10),
+    _.reduce((a,b) => a+b),
+    console.log
+)
+</script>
+</html>

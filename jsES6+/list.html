@@ -28,6 +28,9 @@
 <script>
     log('Arr ----------------');
     const arr = [1,2,3];
+    let iter1 = arr[Symbol.iterator]();
+    iter1.next();
+    iter1.next();
     for(const a of arr) log(a);
 </script>
 
@@ -45,4 +48,51 @@
     log('Map ----------------');
     const map = new Map([['a',1],['b',2],['c',3]]);
     for(const a of map) log(a);
+</script>
+
+for of 문
+
+Symbol.iterator 는 키로 사용 가능
+arr[Symbol.tierator] = null 사용시 순회 불가 
+---------------------------------------------------
+
+## 이터러블 / 이터레이터 프로토콜
+    - 이터러블 : 이터레이터를 리턴하는 [Symbol.iterator]()를 가진 값
+    - 이터레이터 : { value, done } 객체를 리턴하는 next()를 가진 값 - iterator.next()
+    - 이터레블/이터레이터를 프로토콜 : 이터러블을 for ... of, 전개 연산자 등과 함계 동작하도록한 규약
+
+
+### 사용자 정의 이터러블을 통해 알아보기
+
+<script>
+    const iterable = {
+        [Symbol.iterator]() {
+            let i  =3;
+            return {
+                next() {
+                    return i ==0 ? {done: true}:{value : i--, done : false};
+                },
+                [Symbol.iterator](){
+                    return this
+                }
+            }
+        }
+    };
+
+    let iterator = iterable[Symbol.iterator]() ;
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    // for(const a of iterable) log(a);
+
+
+    //잘 만들어진 이터러블은 중간에 실행해도 다음이여서 순회한다.
+    //이터러블로 반환해서 해도 순회해도 순회한다. 이것을 웰폼드 이터레이터
+    const arr2 = [1,2,3];
+    let iter2 = arr2[Symbol.iterator]();
+    iter2.next();
+    for (const a of iter2) log(a);
+
+    
 </script>

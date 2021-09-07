@@ -30,3 +30,18 @@
 
     
 </script>
+
+#이터러블 프로토콜을 따른 mapp의 다형성
+
+<script>
+    //map 함수는 이터러블 프로토콜을 따르는 것을 사용할수있다.
+    console.log(map(el => el.nodeName, document.querySelectorAll('*')));
+    const it = document.querySelectorAll('*')[Symbol.iterator]();
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+
+
+</script>

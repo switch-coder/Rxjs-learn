@@ -1,0 +1,32 @@
+<script>
+    const products = [
+        {name:'반팔티', price : 15000},
+        {name:'긴팔티', price : 25000},
+        {name:'나시티', price : 5000},
+        {name:'반바지', price : 10000},
+        {name:'긴바지', price : 20000},
+        {name:'슬랙스', price : 22000},
+    ]
+</script>
+
+# map
+
+<script>
+    const map = (f,iter) => {
+        let res = [];
+        for(const a of iter){
+            res.push(f(a));
+        }
+        return res;
+    }
+    // map 사용 안했을때 
+    // let names = [];
+    // for(const p of products){
+    //     names.push(p.name)
+    // }
+    // console.log(names);
+
+    console.log(map(p => p.name, products));
+
+    
+</script>

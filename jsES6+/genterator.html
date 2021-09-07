@@ -1,0 +1,48 @@
+<script>const log = console.log;</script>
+
+# 제너레이터/이터레이터
+- 제너레이터: 이터레이터이자 이터러블을 생성하는 함수
+
+<script>
+    function *gen(){
+        yield 1;
+        yield 2;
+        yield 3;
+        return 100;
+    }
+    let iter = gen();
+    log(iter[Symbol.iterator] == iter);
+    log(iter.next());
+    log(iter.next());
+    log(iter.next());
+
+    for( const a of gen()) log(a);
+    //자바스크립트는 이터레이터는 순회할수 있다.
+    //자바스크립트는 gentarator가 있으면 어떤 형태든 순회할수 있다.
+</script>
+
+# odds
+
+<script>
+    function *infinity(i =0 ){
+        while(true) yield i++;
+    }
+    function *limit(l,iter){
+        for(const a of infinity(1)){
+            yield a;
+            if(a == l) return;
+        }
+    }
+    //제어가 가능하다.
+    function *odds(l){
+        for(const a of limit(l,infinity(1)) ){
+            if(i % 2) yield i;
+        }
+    }
+
+    let iter2 = odds(10);
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+    log(iter2.next());
+</script>

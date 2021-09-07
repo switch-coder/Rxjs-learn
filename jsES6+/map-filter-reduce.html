@@ -45,3 +45,24 @@
 
 
 </script>
+
+#filter
+
+<script>
+    //명령형 코드
+    let under20000 = [];
+    for( const p of products){
+        if(p.price < 20000) under20000.push(p);
+    }
+    console.log(under20000);
+
+    // 함수형 코드
+    const filter = (f, iter) => {
+        let res= [];
+        for(const a of iter) {
+            if(f(a)) res.push(a);
+        }
+        return res;
+    }
+    console.log(...filter(p => p.price < 20000, products)); 
+</script>
